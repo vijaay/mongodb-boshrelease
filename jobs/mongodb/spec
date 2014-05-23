@@ -1,0 +1,14 @@
+---
+name: mongodb
+templates:
+  ctl.erb: bin/ctl
+  mongodb.conf.erb: config/mongodb.conf
+
+packages:
+  - mongodb
+
+properties:
+  net.port:
+    description: "TCP port on which the MongoDB instance listens for client connections"
+  net.bindIp:
+    description: "IP address that MongoDB binds to in order to listen for connections"
