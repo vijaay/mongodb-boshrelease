@@ -8,7 +8,13 @@ packages:
   - mongodb
 
 properties:
-  net.port:
-    description: "TCP port on which the MongoDB instance listens for client connections"
   net.bindIp:
-    description: "IP address that MongoDB binds to in order to listen for connections"
+    description: IP address that MongoDB binds to in order to listen for connections
+    default: 0.0.0.0
+  net.port:
+    description: TCP port on which the MongoDB instance listens for client connections
+    default: 27010
+  replication.replSetName:
+    description:  Specify a replica set name as an argument to this set.
+  replication.servers:
+    description:  Specify a list of server ip that are part of the replica set

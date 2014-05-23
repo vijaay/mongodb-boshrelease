@@ -1,0 +1,6 @@
+# abort script on any command that exits with a non zero value
+set -e
+
+tar xzf mongodb/mongodb-linux-x86_64-2.6.1.tgz
+
+mv mongodb-linux-x86_64-2.6.1/* ${BOSH_INSTALL_TARGET}

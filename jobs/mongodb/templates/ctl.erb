@@ -2,10 +2,10 @@
 
 RUN_DIR=/var/vcap/sys/run/mongodb
 LOG_DIR=/var/vcap/sys/log/mongodb
-CONF_DIR=/var/vcap/jobs/mongodb
+JOB_DIR=/var/vcap/jobs/mongodb
 BIN_DIR=/var/vcap/packages/mongodb
-DATA_DIR=/var/vcap/store/mongodb
-PIDFILE=${RUN_DIR}/pid
+DAT_DIR=/var/vcap/store/mongodb
+PID_FILE=${RUN_DIR}/pid
 
 case $1 in
 
@@ -14,18 +14,19 @@ case $1 in
     mkdir -p $DATA_DIR
     chown -R vcap:vcap $RUN_DIR $LOG_DIR
 
-    echo $$ > $PIDFILE
-
     cd ${BIN_DIR}
 
-    exec ${BIN_DIR}/mongod --dbpath ${DATA_DIR} --config ${JOB_DIR}/config/mongodb.conf \
-      >  $LOG_DIR/mongodb.stdout.log \
-      >> $LOG_DIR/mongodb.stderr.log
+    exec ${BIN_DIR}/mongod \
+      --fork \
+      --pidfilepath ${PID_FILE} \
+      --config ${JOB_DIR}/config/mongodb.conf \
+      >>  $LOG_DIR/mongodb.stdout.log \
+      2>> $LOG_DIR/mongodb.stderr.log
     ;;
 
   stop)
-    kill -9 `cat $PIDFILE`
-    rm -f $PIDFILE
+    kill -9 `cat $PID_FILE`
+    rm -f $PID_FILE
     ;;
 
   *)
