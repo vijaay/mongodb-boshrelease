@@ -13,7 +13,7 @@ properties:
     default: 0.0.0.0
   net.port:
     description: TCP port on which the MongoDB instance listens for client connections
-    default: 27010
+    default: 27017
   replication.replSetName:
     description:  Specify a replica set name as an argument to this set.
   replication.servers:
