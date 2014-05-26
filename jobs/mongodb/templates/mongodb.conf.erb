@@ -14,7 +14,7 @@ net:
   bindIp: <%= p("net.bindIp") %>
   port: <%= p("net.port") %>
 
-<% if_p("replication.replSetName") %>
+<% if_p("replication.replSetName") do %>
 replication:
   replSetName: <%= p("replication.replSetName") %>
 <% end %>
