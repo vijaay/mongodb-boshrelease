@@ -1,6 +1,10 @@
-# abort script on any command that exits with a non zero value
-set -e
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
 
-tar xzf mongodb/mongodb-linux-x86_64-2.6.1.tgz
+ # Available variables
+# $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
+# $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
+export HOME=/var/vcap
 
-mv mongodb-linux-x86_64-2.6.1/* ${BOSH_INSTALL_TARGET}
+tar xfv mongodb/mongodb-linux-x86_64-2.6.1.tgz
+cp -a mongodb-linux-x86_64-2.6.1/* $BOSH_INSTALL_TARGET

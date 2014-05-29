@@ -1,0 +1,15 @@
+systemLog:
+   destination: file
+   path: "<%= p("mongodb.systemLog.path") %>"
+   quiet: false
+   logAppend: true
+
+storage:
+  dbPath: "<%= p("mongodb.storage.dbPath") %>"
+  directoryPerDB: true
+  journal:
+    enabled: true
+
+net:
+  bindIp: <%= p("mongodb.net.bindIp") %>
+  port: <%= p("mongodb.net.port") %>
