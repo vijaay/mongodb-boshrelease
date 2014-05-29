@@ -6,8 +6,8 @@ To use this bosh release, first upload it to your bosh:
 
 ```
 bosh target BOSH_HOST
-git clone https://github.com/cloudfoundry-community/mongodb-boshrelease.git
-cd mongodb-boshrelease
+git clone ssh://git@stash.hybris.com:7999/idefix/bosh-release-mongodb.git
+cd bosh-release-mongodb
 bosh upload release releases/mongodb-1.yml
 ```
 
