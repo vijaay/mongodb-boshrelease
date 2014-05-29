@@ -2,9 +2,10 @@ config/dev.yml
 config/private.yml
 releases/*.tgz
 dev_releases
+blobs/*
 .blobs
-blobs
 .dev_builds
+.vagrant
 .idea
 .DS_Store
 .final_builds/jobs/**/*.tgz
@@ -13,3 +14,5 @@ blobs
 *~
 *#
 #*
+tmp
+my*.yml

@@ -1,1 +1,6 @@
---- {}
+---
+mongodb/mongodb-linux-x86_64-2.6.1.tgz:
+  object_id: 700c780c-6967-4a12-81a0-8e24ea4e2f85
+  sha: !binary |-
+    MTg1NTBiNGEzNTliMjA3YWE0NDc1MjVmMzFkOTRjYzQ5OGU5NDE2Mw==
+  size: 114747467
