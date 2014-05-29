@@ -13,3 +13,8 @@ storage:
 net:
   bindIp: <%= p("mongodb.net.bindIp") %>
   port: <%= p("mongodb.net.port") %>
+
+<% if_p("mongodb.replication.replSetName") do %>
+replication:
+  replSetName: <%= p("mongodb.replication.replSetName") %>
+<% end %>
