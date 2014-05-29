@@ -1,0 +1,22 @@
+---
+packages:
+- name: mongodb
+  version: !binary |-
+    OTgyNTg5ZWFlY2JhNzAyMDk1ZTdiZjA0ZjQ0YTg1NTY1ZGZkNmYwYg==
+  sha1: !binary |-
+    Mjg0MWE5YzA1MzdlOGMyMjZhMWFhYzk0MDNjYzgwNTI0NmU0YzgwZg==
+  fingerprint: !binary |-
+    OTgyNTg5ZWFlY2JhNzAyMDk1ZTdiZjA0ZjQ0YTg1NTY1ZGZkNmYwYg==
+  dependencies: []
+jobs:
+- name: mongodb
+  version: !binary |-
+    YWFlOTk3ZTNmNDdmYWY1M2EzYzFiNGU5OGNkOTVhNzA2OWMwZDcwYw==
+  fingerprint: !binary |-
+    YWFlOTk3ZTNmNDdmYWY1M2EzYzFiNGU5OGNkOTVhNzA2OWMwZDcwYw==
+  sha1: !binary |-
+    NjcxZDhkMTJmNGIzMGU0Y2NkYjU4MDg4MGY4M2NlMmQzMzE0ZTIyOA==
+commit_hash: ae05743f
+uncommitted_changes: true
+name: mongodb-hybris
+version: 1
