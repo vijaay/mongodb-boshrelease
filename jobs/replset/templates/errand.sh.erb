@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+
+cd /var/vcap/packages/mongodb
+
+export LOG_DIR=/var/vcap/sys/log/replset
+export MONGO_MEMBERS='<%= p("mongodb.replicaset_members") %>'
+
+if [ ! -d "$LOG_DIR" ]; then
+  mkdir -p $LOG_DIR
+  chown vcap:vcap $LOG_DIR
+  chmod 775 $LOG_DIR
+fi
+
+echo "Creating replica set for: ${MONGO_MEMBERS}"
+
+# <% p("mongodb.replicaset_members").each_with_index do |server,index| %>
+#  ...
+# <% end %>
+
+
+# TODO: pseudo code bash code
+# if (replica set already exists)  ==> rs.status() on first machine??
+#   -- clean up
+#   loop (current members)
+#     if (member not exists in new member list)
+#       remove from replica set
+#     fi
+#   end
+# else
+#   init new replica set => rs.initiate()
+# fi
+#
+# loop (new members)
+#   add new member to replica set => rs.add('server:port')
+# end

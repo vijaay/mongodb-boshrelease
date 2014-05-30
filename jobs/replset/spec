@@ -1,0 +1,9 @@
+---
+name: replset
+packages:
+- mongodb
+templates:
+  errand.sh.erb: bin/run
+properties:
+  mongodb.replicaset_members:
+    description: "List of mongodb replicaset members"
