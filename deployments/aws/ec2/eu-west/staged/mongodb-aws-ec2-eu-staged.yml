@@ -1,0 +1,91 @@
+---
+name: mongodb-aws-ec2-eu-staged
+director_uuid: d05abc78-0f1d-4a7c-8949-73a0e44ae697
+
+releases:
+- name: mongodb-hybris
+  version: latest
+
+compilation:
+  reuse_compilation_vms: true
+  workers: 3
+  network: default
+  cloud_properties:
+    availability_zone: eu-west-1b
+    instance_type: c1.medium
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-240000
+  update_watch_time: 30000-600000
+  max_in_flight: 1
+  serial: false
+
+properties:
+  mongodb:
+    replSet:
+      name: "mongodb-staged-rs"
+      members:
+        - 10.10.122.10
+        - 10.10.122.11
+        - 10.10.122.12
+
+resource_pools:
+- name: mongodb
+  stemcell:
+    name: bosh-aws-xen-ubuntu
+    version: latest
+  network: default
+  size: 3
+  cloud_properties:
+    instance_type: m1.medium
+    availability_zone: eu-west-1b
+
+networks:
+- name: default
+  subnets:
+  - cloud_properties:
+      security_groups:
+      - mongoDB
+      subnet: subnet-39e80e4e
+    dns:
+    - 10.10.0.2
+    gateway: 10.10.122.1
+    name: default_unused
+    range: 10.10.122.0/24
+    reserved:
+    - 10.10.122.2 - 10.10.122.9
+    static:
+    - 10.10.122.10 - 10.10.122.50
+  type: manual
+
+jobs:
+- name: mongodb_z1
+  instances: 3
+  templates:
+  - name: mongodb
+  resource_pool: mongodb
+  persistent_disk: 256000
+  networks:
+  - name: default
+    static_ips:
+      - 10.10.122.10
+      - 10.10.122.11
+      - 10.10.122.12
+  properties: {}
+
+# bosh run errand mongodb_replset
+- name: mongodb_replset
+  instances: 1
+  template: replset
+  lifecycle: errand
+  resource_pool: mongodb
+  networks:
+  - name: default
+  properties: {}
+
+meta:
+  environment: mongodb-dev
+  stemcell:
+    name: bosh-aws-xen-ubuntu
+    version: latest
