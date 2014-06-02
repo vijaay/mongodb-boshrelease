@@ -6,3 +6,8 @@ builds:
       YWFlOTk3ZTNmNDdmYWY1M2EzYzFiNGU5OGNkOTVhNzA2OWMwZDcwYw==
     sha1: !binary |-
       NjcxZDhkMTJmNGIzMGU0Y2NkYjU4MDg4MGY4M2NlMmQzMzE0ZTIyOA==
+  !binary "MzRlMzM5ODRhMDRiYmMwYmYwMDI3ZTE5OTg4MGIzZTBlMjQ3NTdkZg==":
+    version: !binary |-
+      MzRlMzM5ODRhMDRiYmMwYmYwMDI3ZTE5OTg4MGIzZTBlMjQ3NTdkZg==
+    sha1: !binary |-
+      MTI4ZDlhYzE0NDlmM2IwOGI5Mzg0N2VhYWMzMWZlOWZmMGFkYzcyZA==

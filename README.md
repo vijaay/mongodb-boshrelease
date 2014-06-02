@@ -34,4 +34,11 @@ bosh upload release releases/mongodb-hybris-1.yml
     <td>mongodb 2.6.1</td>
     <td>Initial release</td>
   </tr>
+  <tr>
+    <td>2014-06-02</td>
+    <td>mongodb-hybris</td>
+    <td>2</td>
+    <td>mongodb 2.6.1</td>
+    <td>replica set support</td>
+  </tr>
 </table>
