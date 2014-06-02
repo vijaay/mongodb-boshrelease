@@ -5,5 +5,10 @@ packages:
 templates:
   errand.sh.erb: bin/run
 properties:
-  mongodb.replicaset_members:
+  mongodb.net.port:
+    description: TCP port on which the MongoDB instance listens for client connections
+    default: 27017
+  mongodb.replSet.name:
+    description: "Replica set name"
+  mongodb.replSet.members:
     description: "List of mongodb replicaset members"

@@ -14,7 +14,7 @@ net:
   bindIp: <%= p("mongodb.net.bindIp") %>
   port: <%= p("mongodb.net.port") %>
 
-<% if_p("mongodb.replication.replSetName") do %>
+<% if_p("mongodb.replSet.name") do %>
 replication:
-  replSetName: <%= p("mongodb.replication.replSetName") %>
+  replSetName: <%= p("mongodb.replSet.name") %>
 <% end %>

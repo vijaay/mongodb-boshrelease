@@ -1,36 +1,54 @@
 #!/bin/bash
 set -e
 
-cd /var/vcap/packages/mongodb
+JOB_NAME="replset"
+export LOG_DIR=/var/vcap/sys/log/$JOB_NAME
+export TMP_DIR=/var/vcap/sys/tmp/$JOB_NAME
+for dir in $LOG_DIR $TMP_DIR
+do
+  mkdir -p ${dir}
+  chown vcap:vcap ${dir}
+  chmod 775 ${dir}
+done
 
-export LOG_DIR=/var/vcap/sys/log/replset
-export MONGO_MEMBERS='<%= p("mongodb.replicaset_members") %>'
+MONGO_HOST='<%= p("mongodb.replSet.members").first %>'
+MONGO_PORT='<%= p("mongodb.net.port") %>'
+MONGO_CMD="/var/vcap/packages/mongodb/bin/mongo"
 
-if [ ! -d "$LOG_DIR" ]; then
-  mkdir -p $LOG_DIR
-  chown vcap:vcap $LOG_DIR
-  chmod 775 $LOG_DIR
+# FIND PRIMARY
+echo -e "\n\n==== Looking for mongodb primary ===="
+MONGO_PRIMARY=`${MONGO_CMD} ${MONGO_HOST}:${MONGO_PORT}/admin --quiet --eval 'db.isMaster().primary'`
+if [ -n "$MONGO_PRIMARY" ]; then
+  # replica set already exists
+  echo "Primary found: ${MONGO_PRIMARY}"
+  MONGO_REPLSET_CONF="rs.reconfig(cfg);"
+else
+  # replica set do not exists
+  MONGO_PRIMARY="${MONGO_HOST}:${MONGO_PORT}"
+  MONGO_REPLSET_CONF="rs.initiate(cfg);"
+  echo "Replica set do not exists, swithing primary to: ${MONGO_PRIMARY}"
 fi
 
-echo "Creating replica set for: ${MONGO_MEMBERS}"
+cat << EOF > $TMP_DIR/replSet.js
+cfg =
+{
+  "_id" : "<%= p("mongodb.replSet.name") %>",
+  "version" : 1,
+  "members" : [
+  <% p("mongodb.replSet.members").each_with_index do |server,index| %>
+    { "_id" : <%= index %>, "host" : "<%= server %>" }<% if index < p("mongodb.replSet.members").size - 1 %>,<% end %>
+  <% end %>
+  ]
+};
+${MONGO_REPLSET_CONF}
+EOF
 
-# <% p("mongodb.replicaset_members").each_with_index do |server,index| %>
-#  ...
-# <% end %>
+echo -e "\n\n==== script generated ===="
+cat $TMP_DIR/replSet.js
 
+echo -e "\n\n==== Running replica set config on primary ===="
+${MONGO_CMD} ${MONGO_PRIMARY}/admin --quiet $TMP_DIR/replSet.js
 
-# TODO: pseudo code bash code
-# if (replica set already exists)  ==> rs.status() on first machine??
-#   -- clean up
-#   loop (current members)
-#     if (member not exists in new member list)
-#       remove from replica set
-#     fi
-#   end
-# else
-#   init new replica set => rs.initiate()
-# fi
-#
-# loop (new members)
-#   add new member to replica set => rs.add('server:port')
-# end
+sleep 10
+echo -e "\n\n==== Replica set status ===="
+${MONGO_CMD} ${MONGO_PRIMARY}/admin --quiet --eval 'printjson(rs.status())'
