@@ -24,7 +24,7 @@ update:
 properties:
   mongodb:
     replSet:
-      name: "mongodb-staged-rs"
+      name: "mongodb-staged-rs-001"
       members:
         - 10.10.122.10
         - 10.10.122.11
@@ -60,7 +60,7 @@ networks:
   type: manual
 
 jobs:
-- name: mongodb_z1
+- name: mongodb-staged-aws-eu_z1
   instances: 3
   templates:
   - name: mongodb
@@ -85,7 +85,7 @@ jobs:
   properties: {}
 
 meta:
-  environment: mongodb-dev
+  environment: mongodb-staged-aws-eu
   stemcell:
     name: bosh-aws-xen-ubuntu
     version: latest

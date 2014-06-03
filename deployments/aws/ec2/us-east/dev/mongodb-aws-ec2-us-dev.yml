@@ -51,8 +51,8 @@ networks:
   type: manual
 
 jobs:
-- name: mongodb_z1
-  instances: 2
+- name: mmongodb-dev-aws-us_z1
+  instances: 3
   templates:
   - name: mongodb
   resource_pool: mongodb
@@ -60,8 +60,9 @@ jobs:
   networks:
   - name: default
     static_ips:
-      - 10.10.120.10
-      - 10.10.120.11
+      - 10.10.120.10 # data 1
+      - 10.10.120.11 # data 2
+      - 10.10.120.12 # register 1
   properties: {}
 
 meta:
