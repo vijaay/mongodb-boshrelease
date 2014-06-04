@@ -2,14 +2,20 @@
 name: mongodb-aws-ec2-eu-staged
 director_uuid: d05abc78-0f1d-4a7c-8949-73a0e44ae697
 
+meta:
+  environment: mongodb-staged-aws-eu
+  stemcell:
+    name: bosh-aws-xen-ubuntu
+    version: latest
+
 releases:
-- name: mongodb-hybris
-  version: latest
+  - name: mongodb-hybris
+    version: latest
 
 compilation:
   reuse_compilation_vms: true
   workers: 3
-  network: default
+  network: eu-west-1b
   cloud_properties:
     availability_zone: eu-west-1b
     instance_type: c1.medium
@@ -21,71 +27,190 @@ update:
   max_in_flight: 1
   serial: false
 
-properties:
-  mongodb:
-    replSet:
-      name: "mongodb-staged-rs-001"
-      members:
-        - 10.10.122.10
-        - 10.10.122.11
-        - 10.10.122.12
+properties: {}
 
 resource_pools:
-- name: mongodb
-  stemcell:
-    name: bosh-aws-xen-ubuntu
-    version: latest
-  network: default
-  size: 3
-  cloud_properties:
-    instance_type: m1.medium
-    availability_zone: eu-west-1b
+  - name: mongodb-eu-west-1b
+    stemcell:
+      name: bosh-aws-xen-ubuntu
+      version: latest
+    network: eu-west-1b
+    size: 7
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: eu-west-1b
+
+  - name: mongodb-eu-west-1c
+    stemcell:
+      name: bosh-aws-xen-ubuntu
+      version: latest
+    network: eu-west-1c
+    size: 6
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: eu-west-1b
 
 networks:
-- name: default
-  subnets:
-  - cloud_properties:
-      security_groups:
-      - mongoDB
-      subnet: subnet-39e80e4e
-    dns:
-    - 10.10.0.2
-    gateway: 10.10.122.1
-    name: default_unused
-    range: 10.10.122.0/24
-    reserved:
-    - 10.10.122.2 - 10.10.122.9
-    static:
-    - 10.10.122.10 - 10.10.122.50
-  type: manual
+  - name: eu-west-1b
+    type: manual
+    subnets:
+      - cloud_properties:
+          security_groups:
+            - mongoDB
+          subnet: subnet-39e80e4e
+        dns:
+          - 10.10.0.2
+        gateway: 10.10.122.1
+        name: default_unused
+        range: 10.10.122.0/24
+        reserved:
+          - 10.10.122.2 - 10.10.122.9
+        static:
+          - 10.10.122.10 - 10.10.122.50
+  - name: eu-west-1c
+    type: manual
+    subnets:
+      - cloud_properties:
+          security_groups:
+            - mongoDB
+          subnet: subnet-d7b5b391
+        dns:
+          - 10.10.0.2
+        gateway: 10.10.125.1
+        name: default_unused
+        range: 10.10.125.0/24
+        reserved:
+          - 10.10.125.2 - 10.10.125.9
+        static:
+          - 10.10.125.10 - 10.10.125.50
+
 
 jobs:
-- name: mongodb-staged-aws-eu_z1
-  instances: 3
-  templates:
-  - name: mongodb
-  resource_pool: mongodb
-  persistent_disk: 256000
-  networks:
-  - name: default
-    static_ips:
-      - 10.10.122.10
-      - 10.10.122.11
-      - 10.10.122.12
-  properties: {}
+  ############ REGISTRY REPLICA SET ############
+  - name: mongodb_registry_z1
+    instances: 2
+    templates:
+      - name: mongodb
+    resource_pool: mongodb-us-west-1b
+    persistent_disk: 256000
+    networks:
+      - name: us-west-1b
+        static_ips:
+          - 10.10.122.10
+          - 10.10.122.11
+    properties:
+      mongodb:
+        replSet:
+          name: "mongodb-staged-rs-registry"
 
-# bosh run errand mongodb_replset
-- name: mongodb_replset
-  instances: 1
-  template: replset
-  lifecycle: errand
-  resource_pool: mongodb
-  networks:
-  - name: default
-  properties: {}
+  - name: mongodb_registry_z2
+    instances: 2
+    templates:
+      - name: mongodb
+    resource_pool: mongodb-us-west-1c
+    persistent_disk: 256000
+    networks:
+      - name: us-west-1c
+        static_ips:
+          - 10.10.125.10
+          - 10.10.125.11
+    properties:
+      mongodb:
+        replSet:
+          name: "mongodb-staged-rs-registry"
 
-meta:
-  environment: mongodb-staged-aws-eu
-  stemcell:
-    name: bosh-aws-xen-ubuntu
-    version: latest
+  ############ DATA 1 REPLICA SET ############
+  - name: mongodb_data1_z1
+    instances: 2
+    templates:
+      - name: mongodb
+    resource_pool: mongodb-us-west-1b
+    persistent_disk: 256000
+    networks:
+      - name: us-west-1b
+        static_ips:
+          - 10.10.122.12
+          - 10.10.122.13
+    properties:
+      mongodb:
+        replSet:
+          name: "mongodb-staged-rs-data1"
+
+  - name: mongodb_data1_z2
+    instances: 2
+    templates:
+      - name: mongodb
+    resource_pool: mongodb-us-west-1c
+    persistent_disk: 256000
+    networks:
+      - name: us-west-1c
+        static_ips:
+          - 10.10.125.12
+          - 10.10.125.13
+    properties:
+      mongodb:
+        replSet:
+          name: "mongodb-staged-rs-data1"
+
+  ############ DATA 2 REPLICA SET ############
+  - name: mongodb_data2_z1
+    instances: 2
+    templates:
+      - name: mongodb
+    resource_pool: mongodb-us-west-1b
+    persistent_disk: 256000
+    networks:
+      - name: us-west-1b
+        static_ips:
+          - 10.10.122.14
+          - 10.10.122.15
+    properties:
+      mongodb:
+        replSet:
+          name: "mongodb-staged-rs-data2"
+
+  - name: mongodb_data2_z2
+    instances: 2
+    templates:
+      - name: mongodb
+    resource_pool: mongodb-us-west-1c
+    persistent_disk: 256000
+    networks:
+      - name: us-west-1c
+        static_ips:
+          - 10.10.125.14
+          - 10.10.125.15
+    properties:
+      mongodb:
+        replSet:
+          name: "mongodb-staged-rs-data2"
+
+  # bosh run errand
+  - name: mongodb_rs
+    instances: 1
+    template: replset
+    lifecycle: errand
+    resource_pool: mongodb-us-west-1b
+    networks:
+      - name: us-west-1b
+    properties:
+      mongodb:
+        replSet:
+          - name: "mongodb-staged-rs-regisry"
+            members:
+              - 10.10.122.10
+              - 10.10.122.11
+              - 10.10.125.10
+              - 10.10.125.11
+          - name: "mongodb-staged-rs-data1"
+            members:
+              - 10.10.122.12
+              - 10.10.122.13
+              - 10.10.125.12
+              - 10.10.125.13
+          - name: "mongodb-staged-rs-data2"
+            members:
+              - 10.10.122.14
+              - 10.10.122.15
+              - 10.10.125.14
+              - 10.10.125.15

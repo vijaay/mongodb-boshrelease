@@ -10,15 +10,8 @@ compilation:
   reuse_compilation_vms: true
   workers: 6
 
-properties:
-  mongodb:
-    replSet:
-      name: "repltest"
-      members:
-        - 10.244.2.42
-        - 10.244.2.46
-        - 10.244.2.50
-        #- 10.244.2.54
+properties: {}
+
 jobs:
 - name: mongodb_z1
   instances: 3
@@ -29,22 +22,32 @@ jobs:
       - 10.244.2.46
       - 10.244.2.50
       #- 10.244.2.54
-  properties: {}
+  properties:
+    mongodb:
+      replSet:
+        name: "repltest"
   resource_pool: small_z1
   persistent_disk: 5120
   template: mongodb
   update:
     canaries: 10
 
-# bosh run errand mongodb_replset
+# bosh run errand mongodb_replset --download-logs
 - name: mongodb_replset
   instances: 1
   template: replset
   lifecycle: errand
   resource_pool: small_z1
   networks:
-  - name: mongodb1
-  properties: {}
+    - name: mongodb1
+  properties:
+    mongodb:
+      replSet:
+        - name: "repltest"
+          members:
+            - 10.244.2.42
+            - 10.244.2.46
+            - 10.244.2.50
 
 meta:
   environment: mongodb-warden

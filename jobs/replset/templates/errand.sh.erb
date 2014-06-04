@@ -11,20 +11,20 @@ do
   chmod 775 ${dir}
 done
 
-MONGO_HOST='<%= p("mongodb.replSet.members").first %>'
 MONGO_PORT='<%= p("mongodb.net.port") %>'
 MONGO_CMD="/var/vcap/packages/mongodb/bin/mongo"
 
-# FIND PRIMARY
+
+<% p("mongodb.replSet").each do |rs| %>
+echo -e "\n\n============== Creating replica set for \"<%= rs['name'] %>\" =============="
+
 echo -e "\n\n==== Looking for mongodb primary ===="
-MONGO_PRIMARY=`${MONGO_CMD} ${MONGO_HOST}:${MONGO_PORT}/admin --quiet --eval 'db.isMaster().primary'`
+MONGO_PRIMARY=`${MONGO_CMD} <%= rs['members'].first %>:${MONGO_PORT}/admin --quiet --eval 'db.isMaster().primary'`
 if [ -n "$MONGO_PRIMARY" ]; then
-  # replica set already exists
   echo "Primary found: ${MONGO_PRIMARY}"
   MONGO_REPLSET_CONF="rs.reconfig(cfg);"
 else
-  # replica set do not exists
-  MONGO_PRIMARY="${MONGO_HOST}:${MONGO_PORT}"
+  MONGO_PRIMARY="<%= rs['members'].first %>:${MONGO_PORT}"
   MONGO_REPLSET_CONF="rs.initiate(cfg);"
   echo "Replica set do not exists, swithing primary to: ${MONGO_PRIMARY}"
 fi
@@ -32,18 +32,18 @@ fi
 cat << EOF > $TMP_DIR/replSet.js
 cfg =
 {
-  "_id" : "<%= p("mongodb.replSet.name") %>",
+  "_id" : "<%= rs['name'] %>",
   "version" : 1,
   "members" : [
-  <% p("mongodb.replSet.members").each_with_index do |server,index| %>
-    { "_id" : <%= index %>, "host" : "<%= server %>" }<% if index < p("mongodb.replSet.members").size - 1 %>,<% end %>
+  <% rs['members'].each_with_index do |server,index| %>
+    { "_id" : <%= index %>, "host" : "<%= server %>" }<% if index < rs['members'].size - 1 %>,<% end %>
   <% end %>
   ]
 };
 ${MONGO_REPLSET_CONF}
 EOF
 
-echo -e "\n\n==== script generated ===="
+echo -e "\n\n==== generated configuration ===="
 cat $TMP_DIR/replSet.js
 
 echo -e "\n\n==== Running replica set config on primary ===="
@@ -52,3 +52,9 @@ ${MONGO_CMD} ${MONGO_PRIMARY}/admin --quiet $TMP_DIR/replSet.js
 sleep 10
 echo -e "\n\n==== Replica set status ===="
 ${MONGO_CMD} ${MONGO_PRIMARY}/admin --quiet --eval 'printjson(rs.status())'
+
+
+rm -f $TMP_DIR/replSet.js
+MONGO_PRIMARY=
+MONGO_REPLSET_CONF=
+<% end %>
