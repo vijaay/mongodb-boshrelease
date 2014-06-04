@@ -20,25 +20,32 @@ bosh upload release releases/mongodb-hybris-1.yml
 
 ### <a name="releases"></a>Releases
 <table>
-  <tr>
-    <th>Date</th>
-    <th>Name</th>
-    <th>Version</th>
-    <th>Kafka</th>
-    <th>Comment</th>
-  </tr>
-  <tr>
-    <td>2014-05-29</td>
-    <td>mongodb-hybris</td>
-    <td>1</td>
-    <td>mongodb 2.6.1</td>
-    <td>Initial release</td>
-  </tr>
-  <tr>
-    <td>2014-06-02</td>
-    <td>mongodb-hybris</td>
-    <td>2</td>
-    <td>mongodb 2.6.1</td>
-    <td>replica set support</td>
-  </tr>
+<tr>
+  <th>Date</th>
+  <th>Name</th>
+  <th>Version</th>
+  <th>Kafka</th>
+  <th>Comment</th>
+</tr>
+<tr>
+  <td>2014-05-29</td>
+  <td>mongodb-hybris</td>
+  <td>1</td>
+  <td>mongodb 2.6.1</td>
+  <td>Initial release</td>
+</tr>
+<tr>
+  <td>2014-06-02</td>
+  <td>mongodb-hybris</td>
+  <td>2</td>
+  <td>mongodb 2.6.1</td>
+  <td>replica set support</td>
+</tr>
+<tr>
+  <td>2014-06-04</td>
+  <td>mongodb-hybris</td>
+  <td>3</td>
+  <td>mongodb 2.6.1</td>
+  <td>multi zone support</td>
+</tr>
 </table>

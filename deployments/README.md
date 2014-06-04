@@ -15,7 +15,8 @@ bosh deploy
 
 The environments are divided by subnets:
 
-- mongodb-dev: 10.10.120.0/24
-- mongodb-test: 10.10.121.0/24
-- mongodb-staged: 10.10.122.0/24
-- mongodb-dprod: 10.10.123.0/24
+- mongodb-dev-z1: 10.10.120.0/24
+- mongodb-test-z1: 10.10.121.0/24
+- mongodb-staged-z1: 10.10.122.0/24
+- mongodb-staged-z2: 10.10.125.0/24
+- mongodb-dprod-z1: 10.10.123.0/24

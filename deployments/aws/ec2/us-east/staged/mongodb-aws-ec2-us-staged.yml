@@ -87,7 +87,7 @@ networks:
 
 jobs:
   ############ REGISTRY REPLICA SET ############
-  - name: mongodb_registry_z1
+  - name: mongodb_staged_registry_z1
     instances: 2
     templates:
       - name: mongodb
@@ -103,7 +103,7 @@ jobs:
         replSet:
           name: "mongodb-staged-rs-registry"
 
-  - name: mongodb_registry_z2
+  - name: mongodb_staged_registry_z2
     instances: 2
     templates:
       - name: mongodb
@@ -120,7 +120,7 @@ jobs:
           name: "mongodb-staged-rs-registry"
 
   ############ DATA 1 REPLICA SET ############
-  - name: mongodb_data1_z1
+  - name: mongodb_staged_data1_z1
     instances: 2
     templates:
       - name: mongodb
@@ -136,7 +136,7 @@ jobs:
         replSet:
           name: "mongodb-staged-rs-data1"
 
-  - name: mongodb_data1_z2
+  - name: mongodb_staged_data1_z2
     instances: 2
     templates:
       - name: mongodb
@@ -153,7 +153,7 @@ jobs:
           name: "mongodb-staged-rs-data1"
 
   ############ DATA 2 REPLICA SET ############
-  - name: mongodb_data2_z1
+  - name: mongodb_staged_data2_z1
     instances: 2
     templates:
       - name: mongodb
@@ -169,7 +169,7 @@ jobs:
         replSet:
           name: "mongodb-staged-rs-data2"
 
-  - name: mongodb_data2_z2
+  - name: mongodb_staged_data2_z2
     instances: 2
     templates:
       - name: mongodb
@@ -186,7 +186,7 @@ jobs:
           name: "mongodb-staged-rs-data2"
 
   # bosh run errand
-  - name: mongodb_rs
+  - name: mongodb_staged_rs
     instances: 1
     template: replset
     lifecycle: errand

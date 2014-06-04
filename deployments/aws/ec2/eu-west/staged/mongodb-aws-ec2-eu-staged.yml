@@ -5,7 +5,7 @@ director_uuid: d05abc78-0f1d-4a7c-8949-73a0e44ae697
 meta:
   environment: mongodb-staged-aws-eu
   stemcell:
-    name: bosh-aws-xen-ubuntu
+    name: bosh-aws-xen-ubuntu-lucid
     version: latest
 
 releases:
@@ -32,7 +32,7 @@ properties: {}
 resource_pools:
   - name: mongodb-eu-west-1b
     stemcell:
-      name: bosh-aws-xen-ubuntu
+      name: bosh-aws-xen-ubuntu-lucid
       version: latest
     network: eu-west-1b
     size: 7
@@ -42,13 +42,13 @@ resource_pools:
 
   - name: mongodb-eu-west-1c
     stemcell:
-      name: bosh-aws-xen-ubuntu
+      name: bosh-aws-xen-ubuntu-lucid
       version: latest
     network: eu-west-1c
     size: 6
     cloud_properties:
       instance_type: m1.medium
-      availability_zone: eu-west-1b
+      availability_zone: eu-west-1c
 
 networks:
   - name: eu-west-1b
@@ -87,14 +87,14 @@ networks:
 
 jobs:
   ############ REGISTRY REPLICA SET ############
-  - name: mongodb_registry_z1
+  - name: mongodb_staged_registry_z1
     instances: 2
     templates:
       - name: mongodb
-    resource_pool: mongodb-us-west-1b
+    resource_pool: mongodb-eu-west-1b
     persistent_disk: 256000
     networks:
-      - name: us-west-1b
+      - name: eu-west-1b
         static_ips:
           - 10.10.122.10
           - 10.10.122.11
@@ -103,14 +103,14 @@ jobs:
         replSet:
           name: "mongodb-staged-rs-registry"
 
-  - name: mongodb_registry_z2
+  - name: mongodb_staged_registry_z2
     instances: 2
     templates:
       - name: mongodb
-    resource_pool: mongodb-us-west-1c
+    resource_pool: mongodb-eu-west-1c
     persistent_disk: 256000
     networks:
-      - name: us-west-1c
+      - name: eu-west-1c
         static_ips:
           - 10.10.125.10
           - 10.10.125.11
@@ -120,14 +120,14 @@ jobs:
           name: "mongodb-staged-rs-registry"
 
   ############ DATA 1 REPLICA SET ############
-  - name: mongodb_data1_z1
+  - name: mongodb_staged_data1_z1
     instances: 2
     templates:
       - name: mongodb
-    resource_pool: mongodb-us-west-1b
+    resource_pool: mongodb-eu-west-1b
     persistent_disk: 256000
     networks:
-      - name: us-west-1b
+      - name: eu-west-1b
         static_ips:
           - 10.10.122.12
           - 10.10.122.13
@@ -136,14 +136,14 @@ jobs:
         replSet:
           name: "mongodb-staged-rs-data1"
 
-  - name: mongodb_data1_z2
+  - name: mongodb_staged_data1_z2
     instances: 2
     templates:
       - name: mongodb
-    resource_pool: mongodb-us-west-1c
+    resource_pool: mongodb-eu-west-1c
     persistent_disk: 256000
     networks:
-      - name: us-west-1c
+      - name: eu-west-1c
         static_ips:
           - 10.10.125.12
           - 10.10.125.13
@@ -153,14 +153,14 @@ jobs:
           name: "mongodb-staged-rs-data1"
 
   ############ DATA 2 REPLICA SET ############
-  - name: mongodb_data2_z1
+  - name: mongodb_staged_data2_z1
     instances: 2
     templates:
       - name: mongodb
-    resource_pool: mongodb-us-west-1b
+    resource_pool: mongodb-eu-west-1b
     persistent_disk: 256000
     networks:
-      - name: us-west-1b
+      - name: eu-west-1b
         static_ips:
           - 10.10.122.14
           - 10.10.122.15
@@ -169,14 +169,14 @@ jobs:
         replSet:
           name: "mongodb-staged-rs-data2"
 
-  - name: mongodb_data2_z2
+  - name: mongodb_staged_data2_z2
     instances: 2
     templates:
       - name: mongodb
-    resource_pool: mongodb-us-west-1c
+    resource_pool: mongodb-eu-west-1c
     persistent_disk: 256000
     networks:
-      - name: us-west-1c
+      - name: eu-west-1c
         static_ips:
           - 10.10.125.14
           - 10.10.125.15
@@ -185,14 +185,14 @@ jobs:
         replSet:
           name: "mongodb-staged-rs-data2"
 
-  # bosh run errand
-  - name: mongodb_rs
+  # bosh run errand mongodb_staged_rs --download-logs
+  - name: mongodb_staged_rs
     instances: 1
     template: replset
     lifecycle: errand
-    resource_pool: mongodb-us-west-1b
+    resource_pool: mongodb-eu-west-1b
     networks:
-      - name: us-west-1b
+      - name: eu-west-1b
     properties:
       mongodb:
         replSet:

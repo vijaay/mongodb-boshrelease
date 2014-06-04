@@ -5,3 +5,8 @@ builds:
       MTUwMTUwYjg4Njc1N2MyYWQxNjgwZTYwODYzN2I2MTIyNjU5YzkxNw==
     sha1: !binary |-
       MTg3ZTY0MzVjYWZjMDc5MTAzMzhmMDgzZTQyOWI4N2E1MjNhYTU4Ng==
+  !binary "YThjZjgzY2NiZDQ2ZGI4NmE2Y2NlNGUxYWUzYTAxZGZhMmMyY2MwMw==":
+    version: !binary |-
+      YThjZjgzY2NiZDQ2ZGI4NmE2Y2NlNGUxYWUzYTAxZGZhMmMyY2MwMw==
+    sha1: !binary |-
+      ZDRjZWYwNTNmMGE2M2I2MGI4MDQxNTc5ZjA4MjI0NDk3ZTk3YmM0Nw==
