@@ -5,9 +5,9 @@ To use this bosh deployment manifest :
 ```
 bosh target BOSH_HOST
 bosh login
-git clone ssh://git@stash.hybris.com:7999/idefix/bosh-deployment-mongodb.git
-cd bosh-deployment-mongodb
-bosh deployment mongodb-aws-ec2-manifest.yml
+git clone ssh://git@stash.hybris.com:7999/idefix/bosh-release-mongodb.git
+cd bosh-release-mongodb
+bosh deployment deployments/aws/ec2/us-east/dev/mongodb-aws-ec2-us-dev.yml
 bosh deploy
 ```
 
