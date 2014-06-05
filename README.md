@@ -15,7 +15,7 @@ To use this bosh release, first upload it to your bosh:
 bosh target BOSH_HOST
 git clone ssh://git@stash.hybris.com:7999/idefix/bosh-release-mongodb.git
 cd bosh-release-mongodb
-bosh upload release releases/mongodb-hybris-1.yml
+bosh upload release
 ```
 
 ### <a name="releases"></a>Releases
@@ -47,5 +47,12 @@ bosh upload release releases/mongodb-hybris-1.yml
   <td>3</td>
   <td>mongodb 2.6.1</td>
   <td>multi zone support</td>
+</tr>
+<tr>
+  <td>2014-06-05</td>
+  <td>mongodb-hybris</td>
+  <td>4</td>
+  <td>mongodb 2.6.1</td>
+  <td></td>
 </tr>
 </table>
