@@ -16,10 +16,14 @@ MONGO_CMD="/var/vcap/packages/mongodb/bin/mongo"
 
 
 <% p("mongodb.replSet").each do |rs| %>
+
+TMP_SCRIPT="${TMP_DIR}/replSet_<%= rs['name'] %>.js"
+
 echo -e "\n\n============== Creating replica set for \"<%= rs['name'] %>\" =============="
 
 echo -e "\n\n==== Looking for mongodb primary ===="
 MONGO_PRIMARY=`${MONGO_CMD} <%= rs['members'].first %>:${MONGO_PORT}/admin --quiet --eval 'db.isMaster().primary'`
+
 if [ -n "$MONGO_PRIMARY" ]; then
   echo "Primary found: ${MONGO_PRIMARY}"
   MONGO_REPLSET_CONF="rs.reconfig(cfg);"
@@ -29,32 +33,30 @@ else
   echo "Replica set do not exists, swithing primary to: ${MONGO_PRIMARY}"
 fi
 
-cat << EOF > $TMP_DIR/replSet.js
+
+cat << EOF > $TMP_SCRIPT
 cfg =
 {
   "_id" : "<%= rs['name'] %>",
   "version" : 1,
-  "members" : [
-  <% rs['members'].each_with_index do |server,index| %>
-    { "_id" : <%= index %>, "host" : "<%= server %>" }<% if index < rs['members'].size - 1 %>,<% end %>
-  <% end %>
+  "members" : [<% rs['members'].each_with_index do |server,index| %>
+    { "_id" : <%= index %>, "host" : "<%= server %>" }<% if index < rs['members'].size - 1 %>,<% end %><% end %>
   ]
 };
 ${MONGO_REPLSET_CONF}
 EOF
 
 echo -e "\n\n==== generated configuration ===="
-cat $TMP_DIR/replSet.js
+cat $TMP_SCRIPT
 
 echo -e "\n\n==== Running replica set config on primary ===="
-${MONGO_CMD} ${MONGO_PRIMARY}/admin --quiet $TMP_DIR/replSet.js
+${MONGO_CMD} ${MONGO_PRIMARY}/admin $TMP_SCRIPT
 
-sleep 10
+sleep 20
 echo -e "\n\n==== Replica set status ===="
-${MONGO_CMD} ${MONGO_PRIMARY}/admin --quiet --eval 'printjson(rs.status())'
+${MONGO_CMD} ${MONGO_PRIMARY}/admin --eval 'printjson(rs.status())'
 
-
-rm -f $TMP_DIR/replSet.js
+TMP_SCRIPT=
 MONGO_PRIMARY=
 MONGO_REPLSET_CONF=
 <% end %>
