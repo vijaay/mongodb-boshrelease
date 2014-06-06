@@ -1,0 +1,34 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/riemann-mongodb
+LOG_DIR=/var/vcap/sys/log/riemann-mongodb
+JOB_DIR=/var/vcap/jobs/riemann-mongodb
+RIEMANN_PIDFILE=${RUN_DIR}/mongodb_rs_status_pid
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+    cd /var/vcap/packages/riemann-mongodb/
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    bundle exec riemann-mongodb-rs-status --host <%= properties.riemann.server %> --event-host <%= spec.index %>.<%= spec.job.name %>.<%= properties.riemann.suffix %> \
+        >> $LOG_DIR/riemann-mongodb-rs-status.stdout.log \
+        >> $LOG_DIR/riemann-mongodb-rs-status.stderr.log &
+    echo $! > $RIEMANN_PIDFILE
+
+    ;;
+
+  stop)
+
+    kill -9 `cat $RIEMANN_PIDFILE`
+    rm -f $RIEMANN_PIDFILE
+    ;;
+
+  *)
+    echo "Usage: ctl-mongodb-rs-status {start|stop}" ;;
+
+esac
