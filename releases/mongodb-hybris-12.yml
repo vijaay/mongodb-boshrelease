@@ -1,0 +1,53 @@
+---
+packages:
+- name: ruby
+  version: !binary |-
+    NTcyYTlkMzU4OWE3NGUwNDRiMTk1YWQwNzc4ZjdkNjYxMTdiZjk4Yw==
+  sha1: !binary |-
+    NjJlYzVkZWFlNzA3NDc2ODNmZmE2ZTRjNWUxOGY0ZTM4MDY1OGE2ZA==
+  fingerprint: !binary |-
+    NTcyYTlkMzU4OWE3NGUwNDRiMTk1YWQwNzc4ZjdkNjYxMTdiZjk4Yw==
+  dependencies: []
+- name: mongodb
+  version: !binary |-
+    OTgyNTg5ZWFlY2JhNzAyMDk1ZTdiZjA0ZjQ0YTg1NTY1ZGZkNmYwYg==
+  sha1: !binary |-
+    Mjg0MWE5YzA1MzdlOGMyMjZhMWFhYzk0MDNjYzgwNTI0NmU0YzgwZg==
+  fingerprint: !binary |-
+    OTgyNTg5ZWFlY2JhNzAyMDk1ZTdiZjA0ZjQ0YTg1NTY1ZGZkNmYwYg==
+  dependencies: []
+- name: riemann-mongodb
+  version: !binary |-
+    NmM2MzEwZTc3OWQwMzIyY2VhN2UwZWQ3YzU0YzhiZDYwNGE3NGQxMQ==
+  sha1: !binary |-
+    OGI1NDFiOGQ0ODIyNDljYThhZDgzNThkMDQ0M2FiNjZhOTQ5YWVkNw==
+  fingerprint: !binary |-
+    NmM2MzEwZTc3OWQwMzIyY2VhN2UwZWQ3YzU0YzhiZDYwNGE3NGQxMQ==
+  dependencies:
+  - ruby
+jobs:
+- name: replset
+  version: !binary |-
+    MzkxZTFkY2I0OGRjMGNmMzlkMzNkM2E2YTVjMDRkNTRhMDE2ZTQzZQ==
+  fingerprint: !binary |-
+    MzkxZTFkY2I0OGRjMGNmMzlkMzNkM2E2YTVjMDRkNTRhMDE2ZTQzZQ==
+  sha1: !binary |-
+    NTkxZjYxZmFhZDc0YzQ3ZGI4MDY4MmIwMGY1NGE3MjZmN2RmZTRmNA==
+- name: mongodb
+  version: !binary |-
+    OTYxOGNjMmY1ZDVjZWUzN2QxOTAzZDExN2UwN2I5NzhhMWIwNjQ5Mw==
+  fingerprint: !binary |-
+    OTYxOGNjMmY1ZDVjZWUzN2QxOTAzZDExN2UwN2I5NzhhMWIwNjQ5Mw==
+  sha1: !binary |-
+    ZjkzOGIwMWY4NjM4NmRkMjg2NDg4Y2IzNGUzY2E3NDExMjQ0NGNhMA==
+- name: riemann-mongodb
+  version: !binary |-
+    Y2JmYTVmNzAyZWNhMTc4NDU5YmFkMjA3NDQwMjg4MzIyZjY0NzdiNg==
+  fingerprint: !binary |-
+    Y2JmYTVmNzAyZWNhMTc4NDU5YmFkMjA3NDQwMjg4MzIyZjY0NzdiNg==
+  sha1: !binary |-
+    ZTAxNDVlZDIwNDVmYzg5MjkwOWVkMWNmNTgzZGYwMzFkODFjZjc2Yw==
+commit_hash: 7d044e6e
+uncommitted_changes: true
+name: mongodb-hybris
+version: 12
