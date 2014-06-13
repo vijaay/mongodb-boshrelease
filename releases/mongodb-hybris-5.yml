@@ -1,0 +1,35 @@
+---
+packages:
+- name: riemann-mongodb
+  version: 6c6310e779d0322cea7e0ed7c54c8bd604a74d11
+  sha1: b3ceeac2d4920570de937fc82c6dbfb2a77428ce
+  fingerprint: 6c6310e779d0322cea7e0ed7c54c8bd604a74d11
+  dependencies:
+  - ruby
+- name: ruby
+  version: 572a9d3589a74e044b195ad0778f7d66117bf98c
+  sha1: cb33f416ca2ac49eb16490dd4db4a45fd2676f53
+  fingerprint: 572a9d3589a74e044b195ad0778f7d66117bf98c
+  dependencies: []
+- name: mongodb
+  version: 982589eaecba702095e7bf04f44a85565dfd6f0b
+  sha1: 2841a9c0537e8c226a1aac9403cc805246e4c80f
+  fingerprint: 982589eaecba702095e7bf04f44a85565dfd6f0b
+  dependencies: []
+jobs:
+- name: riemann-mongodb
+  version: cbfa5f702eca178459bad207440288322f6477b6
+  fingerprint: cbfa5f702eca178459bad207440288322f6477b6
+  sha1: 6383b40c6d9f6998c1010d00e9691b5c66574906
+- name: mongodb
+  version: 34e33984a04bbc0bf0027e199880b3e0e24757df
+  fingerprint: 34e33984a04bbc0bf0027e199880b3e0e24757df
+  sha1: 8c87deddf05c2046ccb1da539bb2f71a2cfafb76
+- name: replset
+  version: 391e1dcb48dc0cf39d33d3a6a5c04d54a016e43e
+  fingerprint: 391e1dcb48dc0cf39d33d3a6a5c04d54a016e43e
+  sha1: a2f6c519307771c95988da4e4d9e1a9d3b956905
+commit_hash: c4af0f36
+uncommitted_changes: true
+name: mongodb-hybris
+version: 5
