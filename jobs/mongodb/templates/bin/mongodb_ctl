@@ -27,6 +27,7 @@ case $1 in
     kill_and_wait $PIDFILE
 
     ;;
+
   *)
     echo "Usage: mongodb_ctl {start|stop}"
 

@@ -55,4 +55,11 @@ bosh upload release
   <td>mongodb 2.6.1</td>
   <td></td>
 </tr>
+<tr>
+  <td>2014-06-13</td>
+  <td>mongodb-hybris</td>
+  <td>12</td>
+  <td>mongodb 2.6.1</td>
+  <td>adding riemann-mongodb</td>
+</tr>
 </table>
