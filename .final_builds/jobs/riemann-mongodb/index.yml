@@ -1,5 +1,8 @@
 ---
 builds:
-  cbfa5f702eca178459bad207440288322f6477b6:
-    version: cbfa5f702eca178459bad207440288322f6477b6
-    sha1: 6383b40c6d9f6998c1010d00e9691b5c66574906
+  !binary "Y2JmYTVmNzAyZWNhMTc4NDU5YmFkMjA3NDQwMjg4MzIyZjY0NzdiNg==":
+    blobstore_id: 8833c5d2-8278-4854-8ace-5a7526ec58ba
+    version: !binary |-
+      Y2JmYTVmNzAyZWNhMTc4NDU5YmFkMjA3NDQwMjg4MzIyZjY0NzdiNg==
+    sha1: !binary |-
+      ZTAxNDVlZDIwNDVmYzg5MjkwOWVkMWNmNTgzZGYwMzFkODFjZjc2Yw==

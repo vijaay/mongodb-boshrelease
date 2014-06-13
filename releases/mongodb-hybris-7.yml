@@ -39,7 +39,7 @@ jobs:
   fingerprint: !binary |-
     MzRlMzM5ODRhMDRiYmMwYmYwMDI3ZTE5OTg4MGIzZTBlMjQ3NTdkZg==
   sha1: !binary |-
-    NWI3MjUzODUyZjgzY2Y0MTEzMzA3ZTU1NDU4Y2NkMTc3NmM1YTk1MA==
+    Yjc1OTViZTVmYmJkNzdjYTNhOWU3MGZmMThmNWU4ZWJjMzU3MTFiNg==
 - name: riemann-mongodb
   version: !binary |-
     Y2JmYTVmNzAyZWNhMTc4NDU5YmFkMjA3NDQwMjg4MzIyZjY0NzdiNg==
@@ -50,4 +50,4 @@ jobs:
 commit_hash: c4af0f36
 uncommitted_changes: true
 name: mongodb-hybris
-version: 5
+version: 7

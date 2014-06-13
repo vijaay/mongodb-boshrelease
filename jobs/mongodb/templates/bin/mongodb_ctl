@@ -21,8 +21,6 @@ case $1 in
         1>> $LOG_DIR/mongodb.stdout.log \
         2>> $LOG_DIR/mongodb.stderr.log
 
-    # store pid in $PIDFILE
-    # echo $! > $PIDFILE
     ;;
 
   stop)
