@@ -7,6 +7,8 @@ templates:
   ctl-mongodb.erb: bin/ctl-mongodb
   ctl-mongodb-rs-status.erb: bin/ctl-mongodb-rs-status
   ctl-mongodb-serverstatus.erb: bin/ctl-mongodb-serverstatus
+  ctl-net.erb: bin/ctl-net
+  ctl-health.erb: bin/ctl-health
 properties:
   riemann.server:
     description: "IP of the riemann server."

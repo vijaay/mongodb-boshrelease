@@ -15,3 +15,15 @@ check process riemann-mongodb-rs-status
   start program "/var/vcap/jobs/riemann-mongodb/bin/ctl-mongodb-rs-status start"
   stop program "/var/vcap/jobs/riemann-mongodb/bin/ctl-mongodb-rs-status stop"
   group vcap
+
+check process riemann-health
+  with pidfile /var/vcap/sys/run/riemann-mongodb/health_pid
+  start program "/var/vcap/jobs/riemann-mongodb/bin/ctl-health start"
+  stop program "/var/vcap/jobs/riemann-mongodb/bin/ctl-health stop"
+  group vcap
+
+check process riemann-net
+  with pidfile /var/vcap/sys/run/riemann-mongodb/net_pid
+  start program "/var/vcap/jobs/riemann-mongodb/bin/ctl-net start"
+  stop program "/var/vcap/jobs/riemann-mongodb/bin/ctl-net stop"
+  group vcap
