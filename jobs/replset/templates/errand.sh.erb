@@ -22,13 +22,13 @@ TMP_SCRIPT="${TMP_DIR}/replSet_<%= rs['name'] %>.js"
 echo -e "\n\n============== Creating replica set for \"<%= rs['name'] %>\" =============="
 
 echo -e "\n\n==== Looking for mongodb primary ===="
-MONGO_PRIMARY=`${MONGO_CMD} <%= rs['members'].first %>:${MONGO_PORT}/admin --quiet --eval 'db.isMaster().primary'`
+MONGO_PRIMARY=`${MONGO_CMD} <%= rs['members'].flatten.first %>:${MONGO_PORT}/admin --quiet --eval 'db.isMaster().primary'`
 
 if [ -n "$MONGO_PRIMARY" ]; then
   echo "Primary found: ${MONGO_PRIMARY}"
   MONGO_REPLSET_CONF="rs.reconfig(cfg);"
 else
-  MONGO_PRIMARY="<%= rs['members'].first %>:${MONGO_PORT}"
+  MONGO_PRIMARY="<%= rs['members'].flatten.first %>:${MONGO_PORT}"
   MONGO_REPLSET_CONF="rs.initiate(cfg);"
   echo "Replica set do not exists, swithing primary to: ${MONGO_PRIMARY}"
 fi
@@ -39,8 +39,8 @@ cfg =
 {
   "_id" : "<%= rs['name'] %>",
   "version" : 1,
-  "members" : [<% rs['members'].each_with_index do |server,index| %>
-    { "_id" : <%= index %>, "host" : "<%= server %>" }<% if index < rs['members'].size - 1 %>,<% end %><% end %>
+  "members" : [<% rs['members'].flatten.each_with_index do |server,index| %>
+    { "_id" : <%= index %>, "host" : "<%= server %>" }<% if index < rs['members'].flatten.size - 1 %>,<% end %><% end %>
   ]
 };
 ${MONGO_REPLSET_CONF}

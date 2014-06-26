@@ -1,9 +1,12 @@
 ---
 name: replset
+
 packages:
-- mongodb
+  - mongodb
+
 templates:
   errand.sh.erb: bin/run
+
 properties:
   mongodb.net.port:
     description: TCP port on which the MongoDB instance listens for client connections

@@ -1,7 +1,9 @@
 ---
 name: mongodb
+
 packages:
   - mongodb
+
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/mongodb_ctl: bin/mongodb_ctl
@@ -9,6 +11,7 @@ templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
 properties:
   mongodb.net.bindIp:
     description: IP address that MongoDB binds to in order to listen for connections
