@@ -21,3 +21,8 @@ builds:
       ZDljZWRmNTA4MTUyYTFhMzljMzBiOWRmMmJjMjZmYTE4MWFjOWJiZQ==
     sha1: !binary |-
       MDdmYmM0NzMwNjQ0ZGJhNGUzNTdhN2I2ZmJjMzFhYTg0YzViZjI3MA==
+  !binary "NjZjZjMyZWMwZDdlYmEyOWExZWU3ZjVkOTkxODcyMTcxZjJkY2I2NA==":
+    version: !binary |-
+      NjZjZjMyZWMwZDdlYmEyOWExZWU3ZjVkOTkxODcyMTcxZjJkY2I2NA==
+    sha1: !binary |-
+      YmMxZTAwNzQ2NGZmZDNhOGNmZTEwMGUwOThhNmU5NmRlYzRmMzFiOQ==
