@@ -1,0 +1,29 @@
+---
+packages:
+- name: mongodb
+  version: !binary |-
+    OTgyNTg5ZWFlY2JhNzAyMDk1ZTdiZjA0ZjQ0YTg1NTY1ZGZkNmYwYg==
+  sha1: !binary |-
+    Mjg0MWE5YzA1MzdlOGMyMjZhMWFhYzk0MDNjYzgwNTI0NmU0YzgwZg==
+  fingerprint: !binary |-
+    OTgyNTg5ZWFlY2JhNzAyMDk1ZTdiZjA0ZjQ0YTg1NTY1ZGZkNmYwYg==
+  dependencies: []
+jobs:
+- name: replset
+  version: !binary |-
+    N2ViNzJkZTVjMzAyOWE1NDE4OGM4M2Q4NTU0ZmNiYmJlNWM1OTI0MA==
+  fingerprint: !binary |-
+    N2ViNzJkZTVjMzAyOWE1NDE4OGM4M2Q4NTU0ZmNiYmJlNWM1OTI0MA==
+  sha1: !binary |-
+    ODE0OTJjZjQ3YzY4NzQ0YTU1Y2E4NmQyYjg1ODAwMDIzN2NmMDdiMQ==
+- name: mongodb
+  version: !binary |-
+    MzJkMjc1MjVjNGUwYjVhODkxNDBmNzVlNGRkNTQ2MDliZTllNDQwMg==
+  fingerprint: !binary |-
+    MzJkMjc1MjVjNGUwYjVhODkxNDBmNzVlNGRkNTQ2MDliZTllNDQwMg==
+  sha1: !binary |-
+    OWQ2YzM1MDc5NTZjYTQ1OWI4MGJjZmFkY2Q0ZmY4NzVhOTJjMjQxZA==
+commit_hash: 4b19bc4e
+uncommitted_changes: true
+name: mongodb-hybris
+version: '16'
