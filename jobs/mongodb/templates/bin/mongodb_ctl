@@ -14,6 +14,10 @@ case $1 in
   start)
     pid_guard $PIDFILE $JOB_NAME
 
+    # setting the ulimit for open files to 64000, has recommanded settings by
+    # mongodb (see http://docs.mongodb.org/manual/reference/ulimit/)
+    ulimit -n 64000
+
     exec mongod \
         --fork \
         --pidfilepath ${PIDFILE} \
