@@ -1,0 +1,20 @@
+---
+packages:
+- name: mongodb
+  version: 982589eaecba702095e7bf04f44a85565dfd6f0b
+  sha1: 2841a9c0537e8c226a1aac9403cc805246e4c80f
+  fingerprint: 982589eaecba702095e7bf04f44a85565dfd6f0b
+  dependencies: []
+jobs:
+- name: mongodb
+  version: dc6037279e8eb51f1780d9f381f87da6ad69563e
+  fingerprint: dc6037279e8eb51f1780d9f381f87da6ad69563e
+  sha1: 9278e294814d63385ab61f7d2585bbf7839c69c2
+- name: replset
+  version: 337a2c51b1daec829dc21b7f6e949ce906ebcb5d
+  fingerprint: 337a2c51b1daec829dc21b7f6e949ce906ebcb5d
+  sha1: 0fe20a935002d10c35af788ea81b11d53e76dbd5
+commit_hash: 54bd5151
+uncommitted_changes: true
+name: mongodb-hybris
+version: '16.1'
