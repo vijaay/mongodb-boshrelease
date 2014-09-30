@@ -1,34 +1,35 @@
 ---
 builds:
-  !binary "Y2U2MDdhZWM1NzJhMzVhZTA0ZDNhMzI4NzkzMzE0ZTY2YmUxMDQ1MA==":
+  ce607aec572a35ae04d3a328793314e66be10450:
     version: 1
-  !binary "MGMxYzhiOWI1ZjgwYzRkYTE1N2U1NTEyNjQ2N2I2M2NhNzc0Mjc3Yg==":
+  0c1c8b9b5f80c4da157e55126467b63ca774277b:
     version: 2
-  !binary "OTljMjdlY2ExNzU0ZGVmMzQwYjNjZDc1YmI3YTcwMjk0ZDY3NzNkZA==":
+  99c27eca1754def340b3cd75bb7a70294d6773dd:
     version: 3
-  !binary "NjZlNjEzNjUxNDE5NmU4ZDg3MWRjNzc5ZjgzNGEyN2YzZjAzODNkOA==":
+  66e6136514196e8d871dc779f834a27f3f0383d8:
     version: 4
-  !binary "ZTNjNDcxMDdlODc0MTAyYTYyZWEwMGNkZDMzZWE5ZGQzNzJjYzJiYQ==":
+  e3c47107e874102a62ea00cdd33ea9dd372cc2ba:
     version: 5
-  !binary "ZDE2NTkzOTJjY2FlYTFiZjBjYjU3MjRiOWIwMWVmZWYzZWIxZDI0OQ==":
+  d1659392ccaea1bf0cb5724b9b01efef3eb1d249:
     version: 6
-  !binary "MjE3NTFjMWNhMDdmMTc2MzJjYzBhNTZhNGU5MmFlYWM3NTFjMDgxZQ==":
+  21751c1ca07f17632cc0a56a4e92aeac751c081e:
     version: 7
-  !binary "MjQwMjMwZTViNmI0YTVlNDMxMzBlNDcxY2VhYjRkNDA0ZjQxODgzMw==":
+  240230e5b6b4a5e43130e471ceab4d404f418833:
     version: 8
-  !binary "ZGVlMDk5NWY5MDkyNmNjMDRlNTM4OGFlY2YzOTQ1YmM3NTM5NjI4Mg==":
+  dee0995f90926cc04e5388aecf3945bc75396282:
     version: 9
-  !binary "YzkzOTcyNmZhOGMxNzFlMDBiYTgyNzcwZWY4YzI1MjYyNDQwZjkyNw==":
+  c939726fa8c171e00ba82770ef8c25262440f927:
     version: 10
-  !binary "ZjFkYjc3NjJkYjcyZGQ3YTI5MDQ2OTZhZDUyNDUwMjcxNjMwMDk1Nw==":
+  f1db7762db72dd7a2904696ad524502716300957:
     version: 11
-  !binary "YTE1OTE4MTNkOTYxMzAzNjFjOGVkN2QyMWRjYzllOWFmNjE2NzRmYg==":
+  a1591813d96130361c8ed7d21dcc9e9af61674fb:
     version: 12
-  !binary "YTYzZTNjZjdjMjg2YjYyODU5NjI3YzFhMjVkMmI2MDU5ZThmYTBiYw==":
+  a63e3cf7c286b62859627c1a25d2b6059e8fa0bc:
     version: '13'
-  !binary "MWExMWZmZGQ3MDA4MDAxMjdjZDVhNmQ4MmRhY2ZiNWViZmEyMTIwZg==":
+  1a11ffdd700800127cd5a6d82dacfb5ebfa2120f:
     version: '14'
-  !binary "NmIyM2UxZTAwMTI0MWZiMDBhN2UxMWMxNjRlZDI5MTIyZTRiZTk2Zg==":
+  6b23e1e001241fb00a7e11c164ed29122e4be96f:
     version: '15'
-  !binary "ZjdhNWQ2YzZlNDRlYWZhMzMwN2MwZWNlNWFlYWZkMTNiMTU5MTkyMQ==":
+  f7a5d6c6e44eafa3307c0ece5aeafd13b1591921:
     version: '16'
+format-version: '2'
