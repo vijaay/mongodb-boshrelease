@@ -10,6 +10,9 @@ storage:
   journal:
     enabled: true
 
+security:
+  keyFile: "<%= ENV["JOB_DIR"] + "/config/mongodb-keyfile" %>"
+
 net:
   bindIp: <%= p("mongodb.net.bindIp") %>
   port: <%= p("mongodb.net.port") %>
