@@ -18,6 +18,7 @@ output_label=${1:-JOB_NAME}
 
 export JOB_DIR=/var/vcap/jobs/$JOB_NAME
 chmod 755 $JOB_DIR # to access file via symlink
+chmod 600 $JOB_DIR/config/mongodb-keyfile
 
 # Load some bosh deployment properties into env vars
 # Try to put all ERb into data/properties.sh.erb

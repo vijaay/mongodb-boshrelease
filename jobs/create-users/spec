@@ -1,0 +1,17 @@
+---
+name: create-users
+
+packages:
+  - mongodb
+
+templates:
+  errand.sh.erb: bin/run
+
+properties:
+  mongodb.net.port:
+    description: TCP port on which the MongoDB instance listens for client connections
+    default: 27017
+  mongodb.replSet:
+    description: "Array of Replica Set with name and members"
+  mongodb.users:
+    description: Array of users with name, password, role and db
