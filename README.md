@@ -70,4 +70,10 @@ bosh upload release
   <td>mongodb 2.6.1</td>
   <td>adding riemann-mongodb + health + net</td>
 </tr>
+<tr>
+  <td>2014-11-04</td>
+  <td>mongodb-hybris</td>
+  <td>16.2</td>
+  <td>adding security features</td>
+</tr>
 </table>
