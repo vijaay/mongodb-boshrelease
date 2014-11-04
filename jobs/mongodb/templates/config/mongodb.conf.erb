@@ -7,11 +7,12 @@ systemLog:
 storage:
   dbPath: "<%= p("mongodb.storage.dbPath") %>"
   directoryPerDB: true
+  smallFiles: true
   journal:
     enabled: true
 
 security:
-  keyFile: "<%= ENV["JOB_DIR"] + "/config/mongodb-keyfile" %>"
+  keyFile: "<%= p("mongodb.keyfile.path") %>"
 
 net:
   bindIp: <%= p("mongodb.net.bindIp") %>
