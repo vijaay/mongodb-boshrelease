@@ -1,0 +1,43 @@
+#!/bin/bash
+set -e
+
+JOB_NAME="create-users"
+export LOG_DIR=/var/vcap/sys/log/$JOB_NAME
+export TMP_DIR=/var/vcap/sys/tmp/$JOB_NAME
+for dir in $LOG_DIR $TMP_DIR
+do
+  mkdir -p ${dir}
+  chown vcap:vcap ${dir}
+  chmod 775 ${dir}
+done
+
+MONGO_PORT=<%= p("mongodb.net.port") %>
+MONGO_CMD="/var/vcap/packages/mongodb/bin/mongo"
+
+<% p("mongodb.replSet").each do |rs| %>
+<% p("mongodb.users").each do |u| %>
+
+
+TMP_SCRIPT="${TMP_DIR}/replSet_<%= rs['name'] %>_<%= u['name'] %>.js"
+MONGO_ULR=<%= rs['members'].flatten.first %>:${MONGO_PORT}/admin
+
+cat << EOF > $TMP_SCRIPT
+user =
+{
+  "user" : "<%= u['name'] %>",
+  "pwd" : "<%= u['password'] %>",
+  "roles" : [{"role": "<%= u['role'] %>", "db": "<%= u['db'] %>"}]
+};
+db.createUser(user);
+EOF
+
+echo "\n\n==== generated script ===="
+
+cat $TMP_SCRIPT
+
+echo -e "\n\n==== Running generated script ===="
+${MONGO_CMD} ${MONGO_ULR} $TMP_SCRIPT
+
+<% end %>
+
+<% end %>

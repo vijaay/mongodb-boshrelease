@@ -11,8 +11,10 @@ storage:
   journal:
     enabled: true
 
+<% if(p("mongodb.replSet.secured") == "true") then %>
 security:
-  keyFile: "<%= p("mongodb.keyfile.path") %>"
+    keyFile: "<%= p("mongodb.keyfile.path") %>"
+<% end %>
 
 net:
   bindIp: <%= p("mongodb.net.bindIp") %>

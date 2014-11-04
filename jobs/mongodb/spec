@@ -33,3 +33,5 @@ properties:
   mongodb.keyfile.path:
     description: ble
     default: /var/vcap/jobs/mongodb/config/mongodb-keyfile
+  mongodb.replSet.secured:
+    description: ble1
