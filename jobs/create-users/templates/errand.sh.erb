@@ -19,16 +19,36 @@ MONGO_CMD="/var/vcap/packages/mongodb/bin/mongo"
 
 
 TMP_SCRIPT="${TMP_DIR}/replSet_<%= rs['name'] %>_<%= u['name'] %>.js"
-MONGO_ULR=<%= rs['members'].flatten.first %>:${MONGO_PORT}/admin
+
+MONGO_PRIMARY=`${MONGO_CMD} <%= rs['members'].flatten.first %>:${MONGO_PORT}/admin --quiet --eval 'db.isMaster().primary'`
+
+if [ -n "$MONGO_PRIMARY" ]; then
+  echo "Primary found: ${MONGO_PRIMARY}"
+else
+  MONGO_PRIMARY="<%= rs['members'].flatten.first %>:${MONGO_PORT}"
+fi
 
 cat << EOF > $TMP_SCRIPT
-user =
-{
-  "user" : "<%= u['name'] %>",
-  "pwd" : "<%= u['password'] %>",
-  "roles" : [{"role": "<%= u['role'] %>", "db": "<%= u['db'] %>"}]
-};
-db.createUser(user);
+
+count = db.system.users.find({"user": "<%= u['name'] %>"}).count()
+if (count == 0) {
+      user =
+      {
+        "user" : "<%= u['name'] %>",
+        "pwd" : "<%= u['password'] %>",
+        "roles" : [{"role": "<%= u['role'] %>", "db": "<%= u['db'] %>"}]
+      };
+      db.createUser(user);
+}
+else {
+    user =
+    {
+      "pwd" : "<%= u['password'] %>",
+      "roles" : [{"role": "<%= u['role'] %>", "db": "<%= u['db'] %>"}]
+    };
+    db.updateUser("<%= u['name'] %>", user);
+}
+
 EOF
 
 echo "\n\n==== generated script ===="
@@ -36,7 +56,7 @@ echo "\n\n==== generated script ===="
 cat $TMP_SCRIPT
 
 echo -e "\n\n==== Running generated script ===="
-${MONGO_CMD} ${MONGO_ULR} $TMP_SCRIPT
+${MONGO_CMD} ${MONGO_PRIMARY}/admin $TMP_SCRIPT
 
 <% end %>
 
