@@ -29,9 +29,10 @@ properties:
   mongodb.replSet.name:
     description:  Specify a replica set name as an argument to this set.
   mongodb.replSet.key:
-    description: key
+    description: Specify key which will be used in keyfile
   mongodb.keyfile.path:
-    description: ble
+    description: Specify path to kefile
     default: /var/vcap/jobs/mongodb/config/mongodb-keyfile
   mongodb.replSet.secured:
-    description: ble1
+    description: Specify if Replica Set will be secured
+    default: false
