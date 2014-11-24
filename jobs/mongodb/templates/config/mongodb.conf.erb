@@ -11,7 +11,7 @@ storage:
   journal:
     enabled: true
 
-<% if(p("mongodb.replSet.secured") == "true") then %>
+<% if(p("mongodb.replSet.secured")) then %>
 security:
     keyFile: "<%= p("mongodb.keyfile.path") %>"
 <% end %>
