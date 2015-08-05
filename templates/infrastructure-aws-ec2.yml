@@ -2,24 +2,17 @@ meta:
   environment: (( merge ))
   dns_root: (( merge ))
   security_groups: (( merge ))
-  network_name: (( merge ))
+  persistent_disk: 4096
 
   stemcell:
     name: bosh-aws-xen-ubuntu
     version: latest
 
 jobs:
-  - name: mongodb_leader_z1
-    instances: 1
+  - name: mongodb
     networks:
-      - name: (( meta.network_name ))
-  - name: mongodb_z1
-    instances: 2
-    networks:
-      - name: (( meta.network_name ))
-    properties:
-      mongodb:
-        leader_address: (( "0.mongodb-leader-z1.mongodb1." meta.environment "." meta.dns_root ))
+      - name: mongodb1
+    persistent_disk: (( meta.persistent_disk ))
 
 compilation:
   cloud_properties:
@@ -34,7 +27,7 @@ networks:
   - name: floating
     type: vip
     cloud_properties: {}
-  - name: (( meta.network_name ))
+  - name: mongodb1
     type: dynamic
     cloud_properties:
       security_groups: (( meta.security_groups ))

@@ -9,21 +9,14 @@ update:
   serial: false
 
 jobs:
-  - name: mongodb_leader_z1
-    template: mongodb
-    instances: 0
+  - name: mongodb
+    templates:
+    - name: mongodb
+      release: mongodb
+    instances: 1
+    persistent_disk: 0
     resource_pool: small_z1
     networks: (( merge ))
-  - name: mongodb_z1
-    template: mongodb
-    instances: 0
-    resource_pool: small_z1
-    networks: (( merge ))
-    update:
-      canaries: 10
-    properties:
-      mongodb:
-        leader_address: (( merge ))
 
 networks: (( merge ))
 

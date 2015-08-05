@@ -1,6 +1,6 @@
 ---
-final_name: mongodb-hybris
+final_name: mongodb
 blobstore:
   provider: s3
   options:
-    bucket_name: blobs.hybris.com/mongodb
+    bucket_name: blobs-yaas-idefix/mongodb-boshrelease

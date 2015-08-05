@@ -1,9 +1,5 @@
 ---
-mongodb/mongodb-linux-x86_64-2.6.1.tgz:
-  object_id: 700c780c-6967-4a12-81a0-8e24ea4e2f85
-  sha: 18550b4a359b207aa447525f31d94cc498e94163
-  size: 114747467
 mongodb/mongodb-linux-x86_64-2.6.4.tgz:
-  object_id: 2ae72e40-6a0e-49ae-acf9-82381232eb60
+  object_id: f7fb5e3a-f2c3-4bf2-a52a-f5d0bc4cef1a
   sha: 8ac83ce502e13c211e8809269a0c0b9a671edfab
   size: 115652018
