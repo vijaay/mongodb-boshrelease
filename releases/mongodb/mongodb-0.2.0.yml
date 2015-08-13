@@ -1,0 +1,43 @@
+---
+packages:
+- name: mongodb
+  version: !binary |-
+    YmJkZmQxNDVmNDY5ZmRjOTcxN2I5NGVhNTk3OWNjMTQyZTIyZGYzNA==
+  fingerprint: !binary |-
+    YmJkZmQxNDVmNDY5ZmRjOTcxN2I5NGVhNTk3OWNjMTQyZTIyZGYzNA==
+  sha1: !binary |-
+    N2E0M2UyOTcxYTRlMjhjMTcwMGVmMzcyNzgyYmE5MzNmMzE2Zjg1NA==
+  dependencies: []
+jobs:
+- name: create-users
+  version: !binary |-
+    Y2YwNzlhZDRjMWIzMzc2NDc3MTEzMGNiZDBhNDMxNzdmMzA5MGYzMQ==
+  fingerprint: !binary |-
+    Y2YwNzlhZDRjMWIzMzc2NDc3MTEzMGNiZDBhNDMxNzdmMzA5MGYzMQ==
+  sha1: !binary |-
+    NzEwMDQ0YTJhNjdhMGY4Y2IxMTQ5ZjNlMTE1N2YxMWMzYTlkZmE0MQ==
+- name: mongodb
+  version: !binary |-
+    NDJjOGNjZTcxMjE2MDEzZDk4M2MwNTMyYWUxOGY1NDNlNzg4ZWVlYw==
+  fingerprint: !binary |-
+    NDJjOGNjZTcxMjE2MDEzZDk4M2MwNTMyYWUxOGY1NDNlNzg4ZWVlYw==
+  sha1: !binary |-
+    NmQ4Y2E3NDgyZTA4OTk5MTEwZjJiYzY2OGQ5ZjIwZTJiY2ExNjQxYQ==
+- name: replset
+  version: !binary |-
+    NTM1MTQxMTA1Njg0OGFmNjMzMWE3ZmM0OTRhOTk4ZTYzYWYyMmNlYw==
+  fingerprint: !binary |-
+    NTM1MTQxMTA1Njg0OGFmNjMzMWE3ZmM0OTRhOTk4ZTYzYWYyMmNlYw==
+  sha1: !binary |-
+    YzBkMTY1MGY2OWMyNThkNmMwOWZjMDQ3NjY0Njk3ZjQ3YzdiNzNkNA==
+license:
+  version: !binary |-
+    NTY5YTQ4MTY2M2Y5NWIxMGNiODAzNTM5YmE2MWE4YzI0YTg4MTQ2Mw==
+  fingerprint: !binary |-
+    NTY5YTQ4MTY2M2Y5NWIxMGNiODAzNTM5YmE2MWE4YzI0YTg4MTQ2Mw==
+  sha1: !binary |-
+    MTQyMzUxNjgzODIzZTIwYThjMmM4YWQ2YmRlN2I2ZDYwNzM3MTY1ZA==
+commit_hash: 6253988b
+uncommitted_changes: true
+name: mongodb
+version: 0.2.0
